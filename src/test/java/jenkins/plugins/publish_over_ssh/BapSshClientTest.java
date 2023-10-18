@@ -44,6 +44,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.Objects;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -169,7 +170,7 @@ public class BapSshClientTest {
     }
 
     @Test public void testKeepPermissions() throws Exception{
-      File tmp = File.createTempFile("file","my");
+      File tmp = Files.createTempFile("file", "my").toFile();
       FilePath filePath = new FilePath(tmp);
       mockTransfer.setKeepFilePermissions(true);
       mockSftp.put(anInputStream, tmp.getName());
